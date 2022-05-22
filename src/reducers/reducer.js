@@ -20,6 +20,13 @@ const reducer = (state, action) => {
               }
             })
         }
+    case 'DISABLE_BOXES': 
+        return {
+            player1: [0, 0, 0, 0, 0, 0, 0, 0, 0], 
+            player2: [0, 0, 0, 0, 0, 0, 0, 0, 0], 
+            boxesDisabled: false, 
+            resetGame: true
+        }
 
     default:
         return state

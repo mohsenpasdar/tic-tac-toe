@@ -38,39 +38,39 @@ const Board = () => {
     return (
         <div className="boxes-container">
             <div className="box-item">
-                <button value='0' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='0' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='1' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='1' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='2' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='2' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='3' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='3' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='4' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='4' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='5' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='5' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='6' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='6' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='7' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='7' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
 
             <div className="box-item">
-                <button value='8' onClick={fillBox} className="button" disabled={players.resetGame}></button>
+                <button value='8' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
             </div>
         </div>
     )
