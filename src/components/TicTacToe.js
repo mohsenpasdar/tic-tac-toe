@@ -12,8 +12,9 @@ const TicTacToe = () => {
 
     const resetGame = () => {
       players.resetGame = false
+      players.resetMoves = false
     }
-
+    console.log(players.resetMoves);
     const checkWinner = (array) => {
       if ((array[0] == 1 && array[1] == 1 && array[2] == 1) ||
           (array[3] == 1 && array[4] == 1 && array[5] == 1) ||
