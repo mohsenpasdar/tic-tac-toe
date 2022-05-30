@@ -6,6 +6,21 @@ const AllInOne = () => {
   const [player2, setPlayer2] = useState(initial_moves)
   const [state, setState] = useState(true)
   const [filledBoxes, setFilledBoxes] = useState(0)
+  const [disable, setDisable] = useState(false)
+
+  const checkWinner = (array) => {
+    if ((array[0] == 1 && array[1] == 1 && array[2] == 1) ||
+        (array[3] == 1 && array[4] == 1 && array[5] == 1) ||
+        (array[6] == 1 && array[7] == 1 && array[8] == 1) ||
+        (array[0] == 1 && array[3] == 1 && array[6] == 1) ||
+        (array[1] == 1 && array[4] == 1 && array[7] == 1) ||
+        (array[2] == 1 && array[5] == 1 && array[8] == 1) ||
+        (array[0] == 1 && array[4] == 1 && array[8] == 1) ||
+        (array[2] == 1 && array[4] == 1 && array[6] == 1)) {
+          
+          return true
+        }
+  }
 
   const resetGame = () => {
     document.querySelectorAll('.button').forEach((element) => element.innerText = ``)
@@ -52,7 +67,7 @@ const AllInOne = () => {
     <div>
       <div className="boxes-container">
           <div className="box-item">
-              <button value='0' onClick={fillBox} className="button" >
+              <button value='0' onClick={fillBox} className="button" disabled={disable}>
               </button>
           </div>
 
@@ -98,9 +113,8 @@ const AllInOne = () => {
       </div>
       <button className='reset' onClick={resetGame}>Reset</button>
       <div>{filledBoxes === 9 ? "Draw" : ''}</div>
-      <div>{player1}</div>
-      <div>{player2}</div>
-
+      <div>{checkWinner(player1) ? 'player1 won' : ''}</div>
+      <div>{checkWinner(player2) ? 'player2 won' : ''}</div>
     </div>
   )
 }
