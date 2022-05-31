@@ -1,24 +1,21 @@
 import { useState } from 'react'
 
 const Test = () => {
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(1)
+  const [q, setQ] = useState({x: 0, y: -99})
+  
 
   const handlerFunction = () => {
-    setX(5)
-
-    function greet() {
-      setY(x)
-    }
-    setTimeout(greet, 2000);
+    setQ(q => ({...q, x: q.x + 1}))
+    setQ(q => ({...q, y: q.x + 1}))
+    
 
   }
 
   return (
     <div>
       <button onClick={handlerFunction}>click</button>
-      <p>{x}</p>
-      <p>{y}</p>
+      <p>{q.x}</p>
+      <p>{q.y}</p>
     </div>
   )
 }
