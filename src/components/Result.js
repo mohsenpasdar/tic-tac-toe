@@ -9,11 +9,11 @@ const Result = () => {
     }
 
     return (
-        <div>
-            <button className='reset' onClick={resetGame}>Reset</button>
-            <div>{state.draw ? "Draw" : ''}</div>
-            <div>{state.winner1 ? 'player1 won' : ''}</div>
-            <div>{state.winner2 ? 'player2 won' : ''}</div>
+        <div className='result'>
+            <button className='result-button' onClick={resetGame}>Reset</button>
+            <div className='result-text'>{state.draw ? "Draw!" : ''}</div>
+            <div className='result-text'>{state.winner1 ? 'Player1 won!' : ''}</div>
+            <div className='result-text'>{state.winner2 ? 'Player2 won!' : ''}</div>
         </div>
     );
 };

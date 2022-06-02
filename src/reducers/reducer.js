@@ -67,6 +67,8 @@ const reducer = (state, action) => {
           draw: false,
           turn: true
         }
+    default:
+      return state
     
   }
 }
