@@ -1,60 +1,32 @@
-import Board from "./Board"
-import Title from "./Title"
-import TicTacToeContext from "../context/TicTacToeContext"
-import React, { useReducer, useEffect } from "react"
-import reducer from "../reducers/reducer"
-
-const initial_moves = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+import React, { useReducer } from 'react';
+import Board from './Board';
+import TicTacToeContext from '../context/TicTacToeContext';
+import reducer from '../reducers/reducer'
+import Result from './Result';
+import Title from './Title';
 
 const TicTacToe = () => {
-
-    const [players, dispatch] = useReducer(reducer, { 
-        player1: initial_moves, 
-        player2: initial_moves, 
-        boxesDisabled: false,
-        resetGame: false
-    });
-
-    const boxesDisabled = () => {
-      const fsdfdf = true
+    const initialState = {
+        player1: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        player2: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        winner1: false,
+        winner2: false,
+        disable: false,
+        filledBoxes: 0,
+        draw: false, 
+        turn: true
     }
-
-    const testDispatch = () => {
-        dispatch({
-            type: "DISABLE_BOXES"
-        })
-
-    }
-
-    const checkWinner = (array) => {
-      if ((array[0] == 1 && array[1] == 1 && array[2] == 1) ||
-          (array[3] == 1 && array[4] == 1 && array[5] == 1) ||
-          (array[6] == 1 && array[7] == 1 && array[8] == 1) ||
-          (array[0] == 1 && array[3] == 1 && array[6] == 1) ||
-          (array[1] == 1 && array[4] == 1 && array[7] == 1) ||
-          (array[2] == 1 && array[5] == 1 && array[8] == 1) ||
-          (array[0] == 1 && array[4] == 1 && array[8] == 1) ||
-          (array[2] == 1 && array[4] == 1 && array[6] == 1)) {
-            
-            players.boxesDisabled = true
-            return true
-          }
-    }
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
-        <TicTacToeContext.Provider value={{players, dispatch}}>
+        <div>
             <Title />
-            <Board />
-            <h1>{checkWinner(players.player1) ? 'player1 won!' : ''}</h1>
-            <h1>{checkWinner(players.player2) ? 'player2 won!' : ''}</h1>
-            <p>{players.player1}</p>
-            <p>{players.player2}</p>
-            <p>{players.boxesDisabled ? 'boxesDisabled is true' : 'boxesDisabled is false'}</p>
-            <button onClick={testDispatch}>terst</button>
-            <p>{players.boxesDisabled ? "boxes are disabled" : 'boxes are enabled'}</p>
-            
-        </TicTacToeContext.Provider>
-    )
-}
+            <TicTacToeContext.Provider value={{state, dispatch}}>
+                <Board />
+                <Result />
+            </TicTacToeContext.Provider>
+        </div>
+    );
+};
 
-export default TicTacToe
+export default TicTacToe;

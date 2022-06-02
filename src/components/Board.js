@@ -1,21 +1,18 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import TicTacToeContext from "../context/TicTacToeContext"
+import Box from "./Box"
 
 const Board = () => {
-    const [state, setState] = useState(true)
-    const [filledBoxes, countFilledBoxes] = useState(0)
-    const { dispatch, players } = useContext(TicTacToeContext)
-
+    const { state, dispatch } = useContext(TicTacToeContext)
+    const boxes = ['foo', 'foo', 'foo', 'foo', 'foo', 'foo', 'foo', 'foo', 'foo']
     const fillBox = (e) => {
-        if (state) {
+        if (state.turn) {
             if (e.target.innerHTML) {
                 alert('choose another box')
             } else {
                 e.target.innerHTML = 'X'
-                setState(!state)
-                countFilledBoxes(filledBoxes + 1)
-                dispatch({
-                    type: "PLAYER_1",
+                    dispatch({
+                    type: 'PLAYER_1',
                     value: e.target.value
                 })
             }
@@ -24,54 +21,26 @@ const Board = () => {
                 alert('choose another box')
             } else {
                 e.target.innerHTML = 'O'
-                setState(!state)
-                countFilledBoxes(filledBoxes + 1)
                 dispatch({
-                    type: "PLAYER_2",
+                    type: 'PLAYER_2',
                     value: e.target.value
                 })
             }
         }
-
+    }
+    
+    const onClick = (e) => {
+        fillBox(e)
+        dispatch({type: 'CHECK_WINNER'})
+        dispatch({type: 'CHECK_DRAW'})
+        dispatch({type: 'CHECK_END'})
     }
 
     return (
         <div className="boxes-container">
-            <div className="box-item">
-                <button value='0' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='1' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='2' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='3' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='4' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='5' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='6' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='7' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
-
-            <div className="box-item">
-                <button value='8' onClick={fillBox} className="button" disabled={players.boxesDisabled}></button>
-            </div>
+            {boxes.map((box, idx) => (
+                <Box key={idx} value={idx} onClick={onClick} disabled={state.disable} />
+            ))}
         </div>
     )
 }

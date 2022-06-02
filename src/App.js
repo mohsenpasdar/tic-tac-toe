@@ -1,12 +1,11 @@
-import TicTacToe from "./components/TicTacToe";
 import AllInOne from './components/AllInOne'
-import Test from './components/Test'
+import TicTacToe from './components/TicTacToe';
 
 import './styles/styles.scss'
 function App() {
   return (
     <div>
-      <AllInOne />
+      <TicTacToe />
     </div>
   );
 }
